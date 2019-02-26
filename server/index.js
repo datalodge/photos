@@ -1,65 +1,40 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const path = require('path');
+const parse = require('body-parser');
 const expressStaticGzip = require('express-static-gzip');
+const db = require('../database/index.js');
 
-const db = require('../database');
-const { cal } = require('./calendarHelper');
 
 const app = express();
-const PORT = 3002;
+const port = 3001;
 
-app.use('/', expressStaticGzip(path.join(__dirname, '/../public'), {
+app.use(parse.json());
+
+// app.use(express.static(path.join(__dirname, '/../client/dist')));
+app.use('/', expressStaticGzip(path.join(__dirname, '/../client/dist'), {
   enableBrotli: true,
+  customCompressions: [{
+    encodingName: 'deflate',
+    fileExtension: 'zz',
+  }],
   orderPreference: ['br', 'gz'],
 }));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+app.use((req, res, next) => {
+  res.append('Access-Control-Allow-Origin', ['*']);
+  res.append('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+  res.append('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
 
-app.get('/api/bookings/:homeId', (req, res) => {
-  db.getBookingsById(req.params.homeId, (err, bookings) => {
+app.get('/pictures/:homeId', (req, res) => {
+  db.getAll(req.params.homeId, (err, data) => {
     if (err) {
-      console.log('err from db');
+      console.log(err);
     } else {
-      cal(bookings, (error, grid) => {
-        if (error) {
-          console.log('no calendar');
-        } else {
-          res.json(grid);
-        }
-      });
+      res.json(data);
     }
   });
 });
 
-app.get('/api/pricing/:homeId', (req, res) => {
-  db.getPricingById(req.params.homeId, (err, pricing) => {
-    if (err) {
-      // send error
-    } else {
-      res.json(pricing);
-    }
-  });
-});
-
-app.post('/api/bookings', (req, res) => {
-  const booking = req.body.booking;
-  console.log(booking);
-  db.createBooking(booking, (err) => {
-    if (err) {
-      // send error
-    } else {
-      res.send('success');
-    }
-  });
-});
-
-app.listen(PORT, () => {
-  console.log(`listening on port ${PORT}`);
-});
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));

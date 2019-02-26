@@ -1,18 +1,12 @@
-var path = require('path');
-var SRC_DIR = path.join(__dirname, '/client/src');
-var DIST_DIR = path.join(__dirname, '/client/dist');
-var Compression = require('compression-webpack-plugin');
+const path = require('path');
+const BrotliGzipPlugin = require('brotli-gzip-webpack-plugin');
 
 module.exports = {
-  entry: `${__dirname}/client/src/index.jsx`,
-  output: {
-    filename: 'bundle.js',
-    path: `${__dirname}/public`,
-  },
+  entry: path.join(__dirname, '/client/src/index.jsx'),
   module: {
     rules: [
       {
-        test: /\.jsx?/,
+        test: [/\.jsx$/],
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -23,16 +17,28 @@ module.exports = {
       },
     ],
   },
-  resolve: {
-    extensions: ['.js', '.jsx'],
+  output: {
+    filename: 'bundle.js',
+    path: path.join(__dirname, '/client/dist/'),
+  },
+  externals: {
+    'styled-components': true,
   },
   plugins: [
-    new Compression({
-      filename: "[path].gz[query]",
-      algorithm: "gzip",
-      test: /\.js$|\.css$|\.html$/,
+    new BrotliGzipPlugin({
+      asset: '[path].br[query]',
+      algorithm: 'brotli',
+      test: /\.(js|css|html|svg)$/,
       threshold: 10240,
-      minRatio: 0.7,
+      minRatio: 0.8,
+      quality: 11,
+    }),
+    new BrotliGzipPlugin({
+      asset: '[path].gz[query]',
+      algorithm: 'gzip',
+      test: /\.(js|css|html|svg)$/,
+      threshold: 10240,
+      minRatio: 0.8,
     }),
   ],
 };

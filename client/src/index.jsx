@@ -1,5 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './app.jsx'
+import Module from  './components/Module.jsx'
 
-ReactDOM.render(<App />, document.getElementById('booking'));
+ReactDOM.render( 
+  <Module />,
+  document.getElementById('root')
+);

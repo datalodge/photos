@@ -1,43 +1,25 @@
-const mysql = require('mysql');
-const mysqlConfig = require('./sql-config.js');
+const mongoose = require('mongoose');
 
-const connection = mysql.createConnection(mysqlConfig);
+mongoose.connect('mongodb://database:27017/picture-viewer', { useNewUrlParser: true });
 
-const getBookingsById = (homeId, callback) => {
-  const queryStr = 'SELECT * FROM `bookings` WHERE bookings.home_id = ?';
-  connection.query(queryStr, [homeId], (err, bookings) => {
+const pictureViewerSchema = new mongoose.Schema({
+  homeId: Number,
+  url: String,
+  thumb_url: String,
+  is_primary: Boolean,
+  description: String,
+});
+
+const DataModel = mongoose.model('DataModel', pictureViewerSchema);
+
+const getAll = (input, callback) => {
+  DataModel.find({ homeId: input }, (err, data) => {
     if (err) {
       callback(err);
     } else {
-      callback(null, bookings);
+      callback(null, data);
     }
   });
 };
 
-const getPricingById = (homeId, callback) => {
-  const queryStr = 'SELECT * FROM `prices` WHERE bookings.home_id = ?';
-  connection.query(queryStr, [homeId], (err, pricing) => {
-    if (err) {
-      callback(err);
-    } else {
-      callback(null, pricing);
-    }
-  });
-};
-
-const createBooking = (booking, callback) => {
-  const queryStr = 'INSERT INTO `bookings` (home_id, user_id, check_in, check_out, price_per_night, no_guests) VALUES (?, ?, ?, ?, ?, ?)';
-  connection.query(queryStr, booking, (err) => {
-    if (err) {
-      callback(err);
-    } else {
-      callback(null);
-    }
-  });
-};
-
-module.exports = {
-  getBookingsById,
-  getPricingById,
-  createBooking,
-};
+module.exports.getAll = getAll;
