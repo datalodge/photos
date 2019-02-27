@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://database:27017/picture-viewer', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost/picture-viewer', { useNewUrlParser: true });
 
 const pictureViewerSchema = new mongoose.Schema({
   homeId: Number,
@@ -91,6 +91,7 @@ let i;
 let j;
 const ext = '.jpg';
 const prefix = 'thumb_';
+
 const mongoObject = {
   homeId: 0,
   url: '',
@@ -98,6 +99,7 @@ const mongoObject = {
   is_primary: false,
   description: '',
 };
+
 const promises = [];
 
 for (i = 100; i < 200; i += 1) {
