@@ -12,14 +12,4 @@ const pictureViewerSchema = new mongoose.Schema({
 
 const DataModel = mongoose.model('DataModel', pictureViewerSchema);
 
-const getAll = (input, callback) => {
-  DataModel.find({ homeId: input }, (err, data) => {
-    if (err) {
-      callback(err);
-    } else {
-      callback(null, data);
-    }
-  });
-};
-
-module.exports.getAll = getAll;
+const s3Bucket = 'https://s3.us-east-2.amazonaws.com/data-house-photos/photos/photos1.jpg';
