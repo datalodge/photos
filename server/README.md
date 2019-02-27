@@ -25,7 +25,7 @@
 
 ## Post Photos
 
-- **URL**: `/pictures/post/:homeId`
+- **URL**: `/pictures/:homeId`
 
 - **Method**: `POST`
 
@@ -39,7 +39,7 @@
 
 ##  Delete Photo
 
-- **URL**: /pictures/delete/:picId
+- **URL**: /pictures/:picId
 
 - **Method**: `DELETE`
 
