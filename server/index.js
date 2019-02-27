@@ -30,11 +30,11 @@ app.get('/pictures/:homeId', (req, res) => {
   });
 });
 
-app.post('/pictures/post/:homeId', (req, res) => {
+app.post('/pictures/:homeId', (req, res) => {
   // TO-DO POST
 });
 
-app.delete('/pictures/delete/:homeId', (req, res) => {
+app.delete('/pictures/:homeId', (req, res) => {
   // TO-DO DELETE
 });
 

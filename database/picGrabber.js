@@ -2,7 +2,7 @@ const axios = require('axios');
 const path = require('path');
 const fs = require('fs');
 
-const keywords = ['house', 'cabin', 'mansion', 'fireplace', 'kitchen'];
+const keywords = ['home', 'travel', 'nature', 'tours', 'kitchen'];
 
 async function downloadImage(params) {
   const { width, height, keyword, imageName } = params;
@@ -22,7 +22,7 @@ async function downloadImage(params) {
   });
 }
 
-for (let i = 0; i < 100; i += 1) {
+for (let i = 101; i < 200; i += 1) {
   const params = {
     width: 640,
     height: 480,
