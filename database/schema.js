@@ -91,6 +91,7 @@ let i;
 let j;
 const ext = '.jpg';
 const prefix = 'thumb_';
+
 const mongoObject = {
   homeId: 0,
   url: '',
@@ -98,6 +99,7 @@ const mongoObject = {
   is_primary: false,
   description: '',
 };
+
 const promises = [];
 
 for (i = 100; i < 200; i += 1) {
