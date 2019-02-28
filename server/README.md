@@ -1,6 +1,6 @@
 # DataLodge: Photos API v1.0
 
-## Get Photos 
+## GET Photos 
 
 - **URL**: `/pictures/:homeId`
 
@@ -23,11 +23,19 @@
 * **Error**
   * Code: 400 Bad response error
 
-## Post Photos
+## POST Photos
 
 - **URL**: `/pictures/:homeId`
 
 - **Method**: `POST`
+
+- **Required Params**: homeId: [Number], url: [String], thumb_url: [String],
+  is_primary: [Boolean],
+  description: [String]
+
+- **Data Params**: { homeId: Number, url: String, thumb_url: String,
+  is_primary: Boolean,
+  description: String }
 
 * **URL Params**: `homeId` _(Integer)_ - ID of the home to associate the new posted photo to
 
@@ -35,9 +43,9 @@
   * Code: 201
 
 * **Error**
-  * Code: 400 Bad response error
+  * Code: 400 Bad response error 
 
-##  Delete Photo
+##  DELETE Photo
 
 - **URL**: /pictures/:picId
 
@@ -46,7 +54,33 @@
 - * **URL Params**: `picId` _(Integer)_ - ID of the pic in the db to delete
 
 * **Success**: 
-  * Code: 201
+  * Code: 201 | Content: "Delete Successful"
 
 * **Error**
-  * Code: 400 Bad response error
+  * Code: 400 Bad response error | Content: "Delete not successful"
+
+
+
+## PUT Photos
+
+- **URL**: `/pictures/:homeId`
+
+- **Method**: `PUT`
+
+- **Data Params**: homeId: Number, url: String, thumb_url: String,
+  is_primary: Boolean,
+  description: String,
+
+* **URL Params**: `homeId` _(Integer)_ - ID of the home to associate the new posted photo to
+
+* **Success**: 
+  * Code: 201 | Content: "Change successful"
+
+* **Error**
+  * Code: 400 Bad response error | Content: "Change not successful"
+
+
+
+## Notes
+
+GET | POST | DELETE | PUT

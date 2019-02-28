@@ -32,10 +32,24 @@ app.get('/pictures/:homeId', (req, res) => {
 
 app.post('/pictures/:homeId', (req, res) => {
   // TO-DO POST
+  db.postPhoto(req.params.homeId, (err, res) => {
+    if(err){
+      console.log(err)
+    } else {
+      res.send('posted photo')
+    }
+  })
 });
 
 app.delete('/pictures/:homeId', (req, res) => {
   // TO-DO DELETE
+  db.deletePhoto(req.params.homeId, (err, data) => {
+    if(err){
+      console.log(err)
+    } else {
+      res.send('successfully deleted a picture')
+    }
+  });
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

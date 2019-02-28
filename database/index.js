@@ -22,4 +22,36 @@ const getAll = (input, callback) => {
   });
 };
 
-module.exports.getAll = getAll;
+const deletePhoto = (input, callback) => {
+  DataModel.deleteOne({homeId: input}, (err, data) => {
+    if(err){
+      callback(err)
+    } else {
+      callback(null, data)
+    }
+  })
+}
+
+const postPhoto = (input, callback) => {
+  let newPic = new DataModel({
+    homeId: input,
+    url: 'string',
+    thumb_url: 'string',
+    is_primary: false,
+    description: 'another string'
+  })
+
+  newPic.save((err, newPic) => {
+    if(err){
+      callback(err)
+    } else {
+      console.log('newPic')
+    }
+  })
+}
+
+module.exports = {
+  getAll,
+  deletePhoto,
+  postPhoto
+} 
