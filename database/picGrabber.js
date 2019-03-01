@@ -22,7 +22,7 @@ async function downloadImage(params) {
   });
 }
 
-for (let i = 100; i < 101; i += 1) {
+for (let i = 400; i < 500; i += 1) {
   const params = {
     width: 640,
     height: 480,

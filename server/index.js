@@ -25,6 +25,12 @@ app.get('/pictures/:homeId', (req, res) => {
     if (err) {
       console.log(err);
     } else {
+      data.forEach((photo) => {
+        let url = 'https://s3.us-east-2.amazonaws.com/data-house-photos/photos139.jpg'
+        let thumburl = 'https://s3.us-east-2.amazonaws.com/data-house-photos/thumb_photos139.jpg'
+        photo.url = url;
+        photo.thumb_url = thumburl;
+      })
       res.json(data);
     }
   });

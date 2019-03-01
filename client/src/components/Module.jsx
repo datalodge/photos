@@ -217,6 +217,7 @@ class Module extends React.Component {
     .then(function (response) {
       that.setState({homeArray: response.data})
       that.sortAndStorePicsArray();
+      console.log(response.data)
     })
     .catch(function (error) {
       console.log(error);
