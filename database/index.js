@@ -1,57 +1,25 @@
-const mongoose = require('mongoose');
+const cassandra = require('cassandra-driver');
 
-mongoose.connect('mongodb://localhost/picture-viewer', { useNewUrlParser: true });
+const client = new cassandra.Client({
+  contactPoints: ['127.0.0.1'],
+  localDataCenter: 'datacenter1'
+})
 
-const pictureViewerSchema = new mongoose.Schema({
-  homeId: Number,
-  url: String,
-  thumb_url: String,
-  is_primary: Boolean,
-  description: String,
+client.connect(function (err) {
+  if(err){
+    console.log(err)
+  }
 });
 
-const DataModel = mongoose.model('DataModel', pictureViewerSchema);
-
-const getAll = (input, callback) => {
-  DataModel.find({ homeId: input }, (err, data) => {
-    if (err) {
-      callback(err);
-    } else {
-      callback(null, data);
-    }
-  });
-};
-
-const deletePhoto = (input, callback) => {
-  DataModel.deleteOne({homeId: input}, (err, data) => {
-    if(err){
-      callback(err)
-    } else {
-      callback(null, data)
-    }
+exports.get = (homeId) => {
+  return new Promise((resolve, reject) => {
+    client.execute(`SELECT * from photos_sdc.photos where homeid = ${homeId}`, (err, result) => {
+      if(err){
+        reject(err)
+      } else {
+        resolve(result.rows)
+      }
+    })
   })
 }
 
-const postPhoto = (input, callback) => {
-  let newPic = new DataModel({
-    homeId: input,
-    url: 'string',
-    thumb_url: 'string',
-    is_primary: false,
-    description: 'another string'
-  })
-
-  newPic.save((err, newPic) => {
-    if(err){
-      callback(err)
-    } else {
-      console.log('newPic')
-    }
-  })
-}
-
-module.exports = {
-  getAll,
-  deletePhoto,
-  postPhoto
-} 

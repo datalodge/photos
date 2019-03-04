@@ -30,6 +30,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
+    "cassandra-driver": "^4.0.0",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.9.1",
     "express": "^4.16.4",
