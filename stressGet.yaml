@@ -1,0 +1,18 @@
+config:
+  target: "http://localhost:3001"
+  phases:
+    - duration: 60
+      arrivalRate: 1000
+scenarios:
+  - name: "Get Photos"
+    flow:
+      - get:
+          url: "/pictures/1298736"
+      - get:
+          url: "/pictures/3254632"
+      - get:
+          url: "/pictures/9732839"
+      - get:
+          url: "/pictures/6492308"
+      - get:
+          url: "/pictures/7823902"

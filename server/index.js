@@ -1,9 +1,9 @@
+const newrelic = require('newrelic')
 const express = require('express');
 const path = require('path');
 const parse = require('body-parser');
 const expressStaticGzip = require('express-static-gzip');
 const db = require('../database/index.js');
-
 
 
 const app = express();
@@ -29,7 +29,6 @@ app.get('/pictures/:homeId', (req, res) => {
         photo.url = s3Path + 'photos' + photo.url + '.jpg';
         photo.thumb_url = s3Path + 'thumb_photos' + photo.thumb_url + '.jpg'
       })
-      console.log(photos)
       res.send(photos)
     })
     .catch((err) => {
@@ -37,5 +36,15 @@ app.get('/pictures/:homeId', (req, res) => {
     })
 });
 
+app.post('/pictures/:homeId', (req, res) => {
+  db.post(req.params.homeId)
+    .then(() => {
+      // Posted - no console log to save speed
+      res.sendStatus(201)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+})
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
