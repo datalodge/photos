@@ -1,0 +1,18 @@
+config:
+  target: "http://localhost:3001"
+  phases:
+    - duration: 60
+      arrivalRate: 1000
+scenarios:
+  - name: "Get Photos"
+    flow:
+      - get:
+          url: "/pictures/{{$randomNumber(1,10000000)}}"
+      - get:
+          url: "/pictures/{{$randomNumber(1,10000000)}}"
+      - get:
+          url: "/pictures/{{$randomNumber(1,10000000)}}"
+      - get:
+          url: "/pictures/{{$randomNumber(1,10000000)}}"
+      - get:
+          url: "/pictures/{{$randomNumber(1,10000000)}}"
