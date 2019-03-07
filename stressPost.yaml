@@ -4,15 +4,15 @@ config:
     - duration: 60
       arrivalRate: 1000
 scenarios:
-  - name: "Get Photos"
+  - name: "Post Photos"
     flow:
       - post:
-          url: "/pictures/1000000"
+          url: "/pictures/{{$randomNumber(1,10000000)}}"
       - post:
-          url: "/pictures/2000000"
+          url: "/pictures/{{$randomNumber(1,10000000)}}"
       - post:
-          url: "/pictures/3000000"
+          url: "/pictures/{{$randomNumber(1,10000000)}}"
       - post:
-          url: "/pictures/4000000"
+          url: "/pictures/{{$randomNumber(1,10000000)}}"
       - post:
-          url: "/pictures/5000000"
+          url: "/pictures/{{$randomNumber(1,10000000)}}"

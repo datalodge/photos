@@ -7,12 +7,12 @@ scenarios:
   - name: "Get Photos"
     flow:
       - get:
-          url: "/pictures/1298736"
+          url: "/pictures/{{$randomNumber(1,10000000)}}"
       - get:
-          url: "/pictures/3254632"
+          url: "/pictures/{{$randomNumber(1,10000000)}}"
       - get:
-          url: "/pictures/9732839"
+          url: "/pictures/{{$randomNumber(1,10000000)}}"
       - get:
-          url: "/pictures/6492308"
+          url: "/pictures/{{$randomNumber(1,10000000)}}"
       - get:
-          url: "/pictures/7823902"
+          url: "/pictures/{{$randomNumber(1,10000000)}}"
