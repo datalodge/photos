@@ -5,4 +5,4 @@ client/dist/bundle.js/gz
 database/data.csv
 database/dataUUID.csv
 database/schema.jsw
-newrelic.js
+
