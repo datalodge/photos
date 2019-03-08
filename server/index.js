@@ -4,14 +4,14 @@ const path = require('path');
 const parse = require('body-parser');
 const expressStaticGzip = require('express-static-gzip');
 const db = require('../database/index.js');
-
+const compression = require('compression')
 
 const app = express();
 const port = 3001;
 
 app.use(parse.json());
+app.use(compression())
 
-// app.use(express.static(path.join(__dirname, '/../client/dist')));
 app.use('/', expressStaticGzip(path.join(__dirname, '/../client/dist'), {
   enableBrotli: true,
   customCompressions: [{
@@ -33,6 +33,7 @@ app.get('/pictures/:homeId', (req, res) => {
     })
     .catch((err) => {
       console.log(err);
+      res.sendStatus(400, 'error on request')
     })
 });
 
