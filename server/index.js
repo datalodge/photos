@@ -21,7 +21,7 @@ app.use('/', expressStaticGzip(path.join(__dirname, '/../client/dist'), {
   orderPreference: ['br', 'gz'],
 }));
 
-app.get('/pictures/:homeId', (req, res) => {
+ app.get('/pictures/:homeId', (req, res) => {
   db.get(req.params.homeId)
     .then((photos) => {
       photos.forEach((photo) => {
