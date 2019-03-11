@@ -2,8 +2,8 @@ const cassandra = require('cassandra-driver');
 const uuid = require('uuid/v4')
 
 const client = new cassandra.Client({
-  contactPoints: ['172.31.5.84'],
-  localDataCenter: 'datacenter1'
+  contactPoints: ['172.31.25.145', '172.31.19.185'],
+  localDataCenter: 'us-west'
 })
 
 client.connect(function (err) {
