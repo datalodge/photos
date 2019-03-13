@@ -4,6 +4,12 @@
 
 The front-end has been built out by Eriki Brinsmead. The focus of my project was building out and scaling the back-end to handle production-level traffic for a photos component in an Airbnb-like app.
 
+## Related Projects
+
+- https://github.com/datalodge/calendar
+- https://github.com/datalodge/reviews
+- https://github.com/datalodge/amenities
+
 ## Getting Started
 
 - npm install
@@ -40,7 +46,7 @@ The front-end has been built out by Eriki Brinsmead. The focus of my project was
 * **Error**
   * Code: 400 Bad response error
 
-## POST Photos
+# POST Photos
 
 - **URL**: `/pictures/:homeId`
 
@@ -63,7 +69,7 @@ The front-end has been built out by Eriki Brinsmead. The focus of my project was
   * Code: 400 Bad response error 
 
 
-## Notes
+# Notes
 
 This backend was built to support usage of Amazon EC2 instances and handle production-level traffic with 80 million data points.
 
