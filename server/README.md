@@ -2,7 +2,7 @@
 
 ## Overview
 
-The front-end has been built out by Eriki Brinsmead. The focus of my project was building out and scaling the back-end to handle production-level traffic for a photos component in an Airbnb-like app.
+The front-end has been built out by Erik Brinsmead. The focus of my project was building out and scaling the back-end to handle production-level traffic for a photos component in an Airbnb-like app.
 
 ## Related Projects
 
