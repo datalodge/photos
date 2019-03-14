@@ -1,4 +1,27 @@
-# DataLodge: Photos API v1.0
+# DataLodge: Photos API 
+
+## Overview
+
+The front-end has been built out by Erik Brinsmead. The focus of my project was building out and scaling the back-end to handle production-level traffic for a photos component in an Airbnb-like app.
+
+## Related Projects
+
+- https://github.com/datalodge/calendar
+- https://github.com/datalodge/reviews
+- https://github.com/datalodge/amenities
+
+## Getting Started
+
+- npm install
+- instantiate Cassandra
+- Grab pics with picGrabber file and upload to Amazon S3
+- Create CSV file with appropriate links using csvSeed file
+- Seed instance of Cassandra
+- Redirect driver towards personal Cassandra instance
+- npm run react-dev
+- npm start
+
+## Routes
 
 ## GET Photos 
 
@@ -23,7 +46,7 @@
 * **Error**
   * Code: 400 Bad response error
 
-## POST Photos
+# POST Photos
 
 - **URL**: `/pictures/:homeId`
 
@@ -45,42 +68,9 @@
 * **Error**
   * Code: 400 Bad response error 
 
-##  DELETE Photo
 
-- **URL**: /pictures/:picId
+# Notes
 
-- **Method**: `DELETE`
+This backend was built to support usage of Amazon EC2 instances and handle production-level traffic with 80 million data points.
 
-- * **URL Params**: `picId` _(Integer)_ - ID of the pic in the db to delete
-
-* **Success**: 
-  * Code: 201 | Content: "Delete Successful"
-
-* **Error**
-  * Code: 400 Bad response error | Content: "Delete not successful"
-
-
-
-## PUT Photos
-
-- **URL**: `/pictures/:homeId`
-
-- **Method**: `PUT`
-
-- **Data Params**: homeId: Number, url: String, thumb_url: String,
-  is_primary: Boolean,
-  description: String,
-
-* **URL Params**: `homeId` _(Integer)_ - ID of the home to associate the new posted photo to
-
-* **Success**: 
-  * Code: 201 | Content: "Change successful"
-
-* **Error**
-  * Code: 400 Bad response error | Content: "Change not successful"
-
-
-
-## Notes
-
-GET | POST | DELETE | PUT
+GET | POST 
